@@ -2,6 +2,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/Navbar";
+import { ClerkProvider } from "@clerk/nextjs";
+import Provider from "./Provider";
+import SideNav from "@/components/SideNav";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,20 +24,39 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-   
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-         <ThemeProvider  attribute="class"
-    defaultTheme="system"
-    enableSystem
-    disableTransitionOnChange
-    >
-      <Navbar/>
-        {children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Provider>
+              <div className="flex min-h-screen">
+                <aside className="w-48 fixed h-full">
+                  <SideNav />
+                </aside>
+                <main className="flex-1 ml-48">
+                  <Navbar />
+                  {children}
+                </main>
+              </div>
+            </Provider>
+          </ThemeProvider>
+
+          {/* Ionicons script tags should be loaded client-side only */}
+          <Script
+            type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+          />
+          <Script
+            noModule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+          />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

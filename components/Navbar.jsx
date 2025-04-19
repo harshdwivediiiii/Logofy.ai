@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react"
 import Image from "next/image"
-import { Download, Menu, Search, Bell } from "lucide-react"
+import Link from "next/link"
+import { Download, Menu, Search, Bell, Home, LayoutDashboard } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { Input } from "@/components/ui/input"
@@ -32,11 +33,7 @@ function Navbar() {
   // Scroll effect for navbar
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolling(true)
-      } else {
-        setScrolling(false)
-      }
+      setScrolling(window.scrollY > 50)
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
@@ -44,12 +41,13 @@ function Navbar() {
 
   return (
     <header className={`p-3 border shadow-sm flex justify-between items-center sticky top-0 bg-background z-50 transition-all duration-300 ${scrolling ? 'bg-opacity-90' : ''}`}>
-      {/* Breadcrumb Navigation */}
+      
+      {/* Breadcrumb (can be changed or removed) */}
       <div className="hidden md:flex items-center text-sm text-muted-foreground">
         <span>Home</span> &gt; <span>Features</span> &gt; <span>Pricing</span>
       </div>
 
-      {/* Logo */}
+      {/* Logo and Menu */}
       <div className="flex items-center gap-4">
         <Sheet>
           <SheetTrigger asChild>
@@ -63,43 +61,38 @@ function Navbar() {
             </SheetHeader>
 
             <div className="flex flex-col gap-4 mt-4">
-              {/* Search Bar in Mobile Menu */}
               <Input
                 placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <Button variant="ghost" className="justify-start">
-                Home
+              <Button asChild variant="ghost" className="justify-start gap-2">
+                <Link href="/">
+                  <Home className="w-4 h-4" />
+                  Home
+                </Link>
               </Button>
-              <Button variant="ghost" className="justify-start">
-                Features
-              </Button>
-              <Button variant="ghost" className="justify-start">
-                Pricing
+              <Button asChild variant="ghost" className="justify-start gap-2">
+                <Link href="/dashboard">
+                  <LayoutDashboard className="w-4 h-4" />
+                  Dashboard
+                </Link>
               </Button>
               <ModeToggle />
-              {/* Quick Access Shortcuts */}
-              <Button variant="ghost" className="justify-start">
-                Dashboard
-              </Button>
-              <Button variant="ghost" className="justify-start">
-                Profile
-              </Button>
             </div>
           </SheetContent>
         </Sheet>
 
         <Image
-          src="./../public/logo.svg"
+          src="/logofy.ai.png"
           alt="Logofy.ai"
-          width={150}
+          width={30}
           height={60}
           className="transition-all hover:scale-105"
         />
       </div>
 
-      {/* Center Search on Desktop with real-time search suggestions */}
+      {/* Search */}
       <div className="hidden md:flex items-center w-1/3">
         <div className="relative w-full">
           <Input
@@ -109,10 +102,8 @@ function Navbar() {
             className="pl-10"
           />
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-          {/* Real-time search dropdown */}
           {searchQuery && (
             <div className="absolute top-12 left-0 w-full bg-white shadow-md rounded-md">
-              {/* Example dropdown with suggestions */}
               <div className="p-2 text-sm">Result 1</div>
               <div className="p-2 text-sm">Result 2</div>
               <div className="p-2 text-sm">Result 3</div>
@@ -123,7 +114,6 @@ function Navbar() {
 
       {/* Right Side */}
       <div className="flex items-center gap-3">
-        {/* Notification */}
         <div className="relative">
           <Button variant="ghost" size="icon">
             <Bell className="h-6 w-6" />
@@ -134,16 +124,8 @@ function Navbar() {
             )}
           </Button>
         </div>
-
-        {/* Mode Toggle */}
         <ModeToggle />
-
-        {/* User Avatar & Profile Preview */}
-        <div className="relative">
-          <UserButton afterSignOutUrl="/" />
-        </div>
-
-        {/* Download Button */}
+        <UserButton afterSignOutUrl="/" />
         <Button className="flex gap-2 hover:scale-105 transition-all">
           <Download className="h-5 w-5" />
           Download

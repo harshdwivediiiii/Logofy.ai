@@ -4,7 +4,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/Navbar";
 import { ClerkProvider } from "@clerk/nextjs";
 import Provider from "./Provider";
-import SideNav from "@/components/SideNav";
 import Script from "next/script";
 
 const geistSans = Geist({
@@ -25,8 +24,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <html lang="en" className="h-full" suppressHydrationWarning>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased h-full bg-white dark:bg-black text-black dark:text-white`}
+        >
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -34,19 +35,26 @@ export default function RootLayout({ children }) {
             disableTransitionOnChange
           >
             <Provider>
-              <div className="flex min-h-screen">
-                <aside className="w-48 fixed h-full">
-                  <SideNav />
-                </aside>
-                <main className="flex-1 ml-48">
-                  <Navbar />
-                  {children}
-                </main>
+              {/* Fullscreen layout */}
+              <div className="flex flex-col min-h-screen">
+                {/* Navbar at top */}
+                <Navbar />
+
+                {/* Main content below navbar */}
+                <div className="flex flex-1 overflow-hidden">
+                  {/* Sidebar can be placed here if it's a permanent side panel */}
+                  {/* <SideNav /> */}
+
+                  {/* Page content */}
+                  <main className="flex-1 overflow-y-auto p-4">
+                    {children}
+                  </main>
+                </div>
               </div>
             </Provider>
           </ThemeProvider>
 
-          {/* Ionicons script tags should be loaded client-side only */}
+          {/* Ionicons Script */}
           <Script
             type="module"
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"

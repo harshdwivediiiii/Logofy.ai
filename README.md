@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1>🚀 Welcome to <strong>Logofy.ai</strong></h1>
+  <p><em>An AI-powered logo generator built with Next.js, Clerk Auth, Gemini API, Lucide Icons, and ShadCN UI.</em></p>
 
-## Getting Started
+  <hr/>
 
-First, run the development server:
+  <h2>📦 Tech Stack</h2>
+  <ul>
+    <li><strong>Next.js 14</strong> (App Router)</li>
+    <li><strong>TypeScript</strong></li>
+    <li><strong>Tailwind CSS</strong></li>
+    <li><strong>Clerk</strong> (User Authentication)</li>
+    <li><strong>Google Gemini API</strong> (AI Integration)</li>
+    <li><strong>Lucide Icons</strong></li>
+    <li><strong>ShadCN UI</strong> (Beautiful components)</li>
+  </ul>
 
-```bash
+  <h2>📁 Folder Structure</h2>
+  <pre>
+/app
+  /dashboard
+  /components
+  /lib
+  /api
+/public
+/styles
+</pre>
+
+  <h2>🛠️ Getting Started</h2>
+  <p>Clone the repo and install dependencies:</p>
+
+  <pre>
+git clone https://github.com/your-username/logofy.ai.git
+cd logofy.ai
+npm install
+  </pre>
+
+  <p>Start the development server:</p>
+  <pre>
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+  </pre>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+  <p>Visit <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> to view the app locally.</p>
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+  <h2>🔐 Authentication</h2>
+  <p>Logofy.ai uses <a href="https://clerk.dev" target="_blank">Clerk</a> for authentication. Users can sign up, log in, and manage profiles securely.</p>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+  <h2>🎨 Features</h2>
+  <ul>
+    <li>Generate logos using AI (Google Gemini API)</li>
+    <li>Download high-quality logos</li>
+    <li>Real-time search functionality</li>
+    <li>Responsive design for all screen sizes</li>
+    <li>Light/Dark mode toggle</li>
+    <li>Mobile menu drawer with navigation</li>
+  </ul>
 
-## Learn More
+  <h2>🌐 Deployment</h2>
+  <p>Logofy.ai is ready for deployment on <a href="https://vercel.com" target="_blank">Vercel</a>.</p>
+  <pre>
+vercel --prod
+  </pre>
 
-To learn more about Next.js, take a look at the following resources:
+  <h2>📄 License</h2>
+  <p>This project is licensed under the <strong>MIT License</strong>.</p>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  <h2>🧠 Learn More</h2>
+  <ul>
+    <li><a href="https://nextjs.org/docs" target="_blank">Next.js Documentation</a></li>
+    <li><a href="https://ui.shadcn.com" target="_blank">ShadCN UI Docs</a></li>
+    <li><a href="https://lucide.dev" target="_blank">Lucide Icons</a></li>
+    <li><a href="https://developers.google.com/ai/gemini" target="_blank">Gemini API</a></li>
+    <li><a href="https://clerk.dev/docs" target="_blank">Clerk Auth Docs</a></li>
+  </ul>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  <hr/>
+  <p>Made with ❤️ by <strong>Harshvardhan Dwivedi</strong></p>
